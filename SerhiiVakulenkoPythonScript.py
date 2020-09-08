@@ -20,18 +20,17 @@ url = "https://sandbox.tinypass.com/api/v3/publisher/user/list?aid=o1sRRZSLlw&ap
 html_content = requests.get(url).text
 response2 = BeautifulSoup(html_content, "lxml")
 response = response2.body.text
-response3 = json.loads(response)
-employee_parsed = json.loads(response)
-emp_data = employee_parsed["users"]
-employ_data = open('C://test2.csv', 'w')
-csvwriter = csv.writer(employ_data)
+parsed = json.loads(response)
+usr_data = parsed["users"]
+users_data = open('C://test2.csv', 'w')
+csvwriter = csv.writer(users_data)
 count = 0
-for emp in emp_data:
+for user in usr_data:
       if count == 0:
              header = emp.keys()
              csvwriter.writerow(header)
              count += 1
-      csvwriter.writerow(emp.values())
+      csvwriter.writerow(user.values())
 employ_data.close()
 
 #MERGE FINAL
